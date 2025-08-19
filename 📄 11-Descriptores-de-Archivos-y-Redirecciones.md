@@ -1,4 +1,3 @@
-
 # 11 - Descriptores de Archivos y Redirecciones  
 **Fundamentos de Linux – Página 11**
 
@@ -25,10 +24,7 @@ Por defecto, los tres primeros descriptores en Linux son:
 
 Veamos un ejemplo con `cat`. Al ejecutarlo, damos entrada estándar (STDIN - FD 0), marcado en verde, por ejemplo: "SOME INPUT". Al confirmar con [ENTER], se devuelve en salida estándar (STDOUT - FD 1), marcado en rojo.
 
-🖼️ ![[find0.webp]]
-📎
-
-> Terminal con el usuario 'htb-student@nixfund' mostrando el comando 'cat' y la salida 'Think Outside The Box' resaltada dos veces, en verde y en rojo.
+![Terminal mostrando STDIN y STDOUT con cat](imagenes-shell/find0.webp)
 
 ---
 
@@ -43,10 +39,7 @@ foonkeemoonkee@htb[/htb]$ find /etc/ -name shadow
 - STDOUT (FD 1) en verde  
 - STDERR (FD 2) en rojo
 
-🖼️  ![[find1.webp]]
-📎 
-
-> Terminal mostrando '/etc/shadow' y errores "Permission denied".
+![Terminal mostrando '/etc/shadow' y errores 'Permission denied'](imagenes-shell/find1.webp)
 
 ---
 
@@ -56,8 +49,7 @@ foonkeemoonkee@htb[/htb]$ find /etc/ -name shadow
 foonkeemoonkee@htb[/htb]$ find /etc/ -name shadow 2>/dev/null
 ```
 
-🖼️ ![[find2.webp]]
-📎 
+![Resultado del comando find redirigiendo STDERR a /dev/null](imagenes-shell/find2.webp)
 
 ---
 
@@ -68,8 +60,7 @@ foonkeemoonkee@htb[/htb]$ find /etc/ -name shadow 2>/dev/null > results.txt
 foonkeemoonkee@htb[/htb]$ cat results.txt
 ```
 
-🖼️ ![[find3.webp]]
-📎 
+![Redirigiendo STDOUT a un archivo y verificando con cat](imagenes-shell/find3.webp)
 
 ---
 
@@ -79,8 +70,7 @@ Deberíamos haber notado que no usamos un número antes del signo mayor que (>) 
 foonkeemoonkee@htb[/htb]$ find /etc/ -name shadow 2> stderr.txt 1> stdout.txt
 ```
 
-🖼️ ![[find4.webp]]
-📎 **Enlace sugerido:** `ENLACE_IMAGEN_5_STDOUT_STDERR_SEPARADOS`
+![Redirigiendo STDOUT y STDERR a archivos separados](imagenes-shell/find4.webp)
 
 ---
 
@@ -90,8 +80,7 @@ Como ya hemos visto, en combinación con los descriptores de archivo, podemos re
 foonkeemoonkee@htb[/htb]$ cat < stdout.txt
 ```
 
-🖼️ ![[find5.webp]]
-📎 
+![Usando cat para redirigir STDIN desde un archivo](imagenes-shell/find5.webp)
 
 ---
 
@@ -102,8 +91,7 @@ foonkeemoonkee@htb[/htb]$ find /etc/ -name passwd >> stdout.txt 2>/dev/null
 foonkeemoonkee@htb[/htb]$ cat stdout.txt
 ```
 
-🖼️  ![[find9.webp]]
-📎 
+![Añadiendo (append) la salida de un comando a un archivo](imagenes-shell/find9.webp)
 
 ---
 
@@ -118,8 +106,7 @@ EOF
 foonkeemoonkee@htb[/htb]$ cat stream.txt
 ```
 
-🖼️ ![[find6.webp]]
-📎 
+![Redirigiendo STDIN desde un stream con EOF](imagenes-shell/find6.webp)
 
 ---
 
@@ -129,9 +116,7 @@ Otra forma de redirigir la salida estándar (STDOUT) es utilizando _pipes_ (|). 
 foonkeemoonkee@htb[/htb]$ find /etc/ -name *.conf 2>/dev/null | grep systemd
 ```
 
-🖼️ ![[find7.webp]]
-Las redirecciones no funcionan solo una vez. Podemos usar los resultados obtenidos para redirigirlos a otro programa. En el siguiente ejemplo, usaremos la herramienta llamada `wc`, que debe contar el número total de resultados obtenidos.
-📎 
+![Usando un pipe para filtrar la salida de find con grep](imagenes-shell/find7.webp)
 
 ---
 
@@ -141,8 +126,7 @@ Las redirecciones no funcionan solo una vez. Podemos usar los resultados obtenid
 foonkeemoonkee@htb[/htb]$ find /etc/ -name *.conf 2>/dev/null | grep systemd | wc -l
 ```
 
-🖼️ ![[find8.webp]]
-📎 
+![Encadenando pipes para contar resultados con wc -l](imagenes-shell/find8.webp)
 
 ---
 
@@ -162,3 +146,6 @@ Conéctate por **SSH** con el usuario `"htb-student"` y la contraseña `"HTB_@ca
 - 32
   ¿Cuántos paquetes en total están instalados en el sistema objetivo?
 - 737
+```
+
+Simplemente sigue el mismo proceso: edita el archivo en GitHub, pega este contenido, previsualiza para confirmar que todo se ve bien y guarda los cambios. ¡Estás a punto de tener unos apuntes perfectamente documentados y visuales!
