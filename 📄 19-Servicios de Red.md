@@ -1,6 +1,3 @@
-Perfecto. Aquí tienes el contenido sobre "Servicios de Red" traducido y formateado en Markdown para Obsidian, manteniendo los comandos, salidas y términos técnicos sin traducir para fines de aprendizaje.
-
-```markdown
 # Servicios de Red
 
 Cuando se trabaja con Linux, es esencial gestionar diversos servicios de red. La competencia en el manejo de estos servicios es crucial por varias razones. Los servicios de red están diseñados para realizar tareas específicas, muchas de las cuales permiten operaciones remotas. Es importante tener el conocimiento y las habilidades para comunicarse con otras computadoras a través de la red, establecer conexiones, transferir archivos, analizar el tráfico de red y configurar estos servicios de manera efectiva. Esta pericia nos permite identificar vulnerabilidades potenciales durante las pruebas de penetración. Además, comprender las opciones de configuración de cada servicio mejora nuestra comprensión general de la seguridad de la red.
