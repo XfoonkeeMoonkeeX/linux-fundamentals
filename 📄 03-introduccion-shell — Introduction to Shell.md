@@ -4,8 +4,8 @@ Es crucial aprender a usar el **shell** de Linux, ya que muchos servidores se ba
 
 Cuando hicimos el cambio de Windows a Linux, esto es lo que vimos:
 
-*Imagen de terminal de Parrot mostrando el prompt con el usuario 'user6@htb-wpjudq32ze' y el comando 'okay google'.*
-![[first_linux2.webp]]
+![Imagen de terminal de Parrot mostrando el prompt con el usuario 'user6@htb-wpjudq32ze' y el comando 'okay google'.](imagenes-shell/first_linux2.webp)
+
 ## 🧑‍💻 ¿Qué es un Shell?
 
 Un terminal de Linux, también llamado **shell** o **línea de comandos**, es una interfaz de texto entre el **usuario** y el **núcleo (kernel)** del sistema operativo. A través de esta interfaz, podemos ejecutar comandos para controlar el sistema. A veces se le llama **consola**, pero este término generalmente se refiere a una pantalla en modo texto.
@@ -40,7 +40,7 @@ Los **multiplexores de terminal** son extensiones útiles que permiten trabajar 
 
 Aquí hay un ejemplo visual de cómo se ve un terminal usando **Tmux**, un multiplexor de terminal:
 
-*Imagen de terminal con tres paneles mostrando listados de directorios: BloodHound, Impacket y SecLists. Cada panel muestra diferentes archivos y directorios bajo el usuario 'cry0l1t3' en la rama 'master'.*![[tmux.webp]]
+![Imagen de terminal con tres paneles mostrando listados de directorios: BloodHound, Impacket y SecLists.](imagenes-shell/tmux.webp)
 
 ---
 
@@ -59,4 +59,3 @@ Además de Bash, existen otros shells populares, como:
 - **Fish shell**
 
 ---
-
