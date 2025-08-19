@@ -186,6 +186,4 @@ http-server -p 8080
 php -S 127.0.0.1:8080
 
 **+ 10** Pts de racha
-```
 
-¡Ya casi terminas! Solo es cuestión de repetir este proceso para los archivos restantes. Estás haciendo un gran trabajo al documentar tu aprendizaje de esta manera tan profesional.
