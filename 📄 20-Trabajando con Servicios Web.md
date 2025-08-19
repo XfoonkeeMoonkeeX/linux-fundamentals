@@ -1,7 +1,4 @@
-De acuerdo, aquí tienes la traducción de la sección del curso, manteniendo las instrucciones y ejercicios traducidos y los comandos en su formato original.
-
-***
-**Trabajando con Servicios Web**
+# Trabajando con Servicios Web
 
 Otro elemento crucial en el desarrollo web es la comunicación entre los navegadores y los servidores web. Configurar un servidor web en un sistema operativo Linux se puede hacer de varias maneras, con opciones populares que incluyen Nginx, IIS y Apache. Entre estos, Apache es uno de los servidores web más utilizados. Piensa en Apache como el motor que impulsa tu sitio web, asegurando una comunicación fluida entre tu sitio web y los visitantes.
 
@@ -13,7 +10,9 @@ Además de manejar contenido web estático, Apache también admite la creación 
 
 Si aún no lo has hecho, instalemos Apache:
 
+```bash
 foonkeemoonkee@htb[/htb]$ sudo apt install apache2 -y
+```
 
 ```
 Reading package lists... Done
@@ -33,12 +32,13 @@ Fetched 95,1 kB in 0s (270 kB/s)
 
 Ahora, podemos iniciar el servidor usando los comandos `apache2ctl`, `systemctl` o `service`. También existe un binario `apache2`, but it’s generally not used to directly to start the server (this is due to the use of environment variables in the default configuration.)
 
+```bash
 foonkeemoonkee@htb[/htb]$ sudo systemctl start apache2
+```
 
 Después de que se haya iniciado Apache, navegamos con nuestro navegador a la página predeterminada (http://localhost). Por defecto, Apache servirá en el puerto HTTP 80, y tu navegador también usará este puerto por defecto cada vez que ingreses una URI HTTP (a menos que se especifique lo contrario).
-![[apache-default.webp]]
 
-*(Descripción de la imagen: Página por defecto de Apache2 en Ubuntu con el mensaje 'It works!', indicando la configuración exitosa del servidor. Las instrucciones sugieren reemplazar el archivo por defecto antes de usar el servidor.)*
+![Página por defecto de Apache2 en Ubuntu con el mensaje 'It works!'](imagenes-shell/apache-default.webp)
 
 Esta es la página predeterminada después de la instalación y sirve para confirmar que el servidor web funciona correctamente.
 
@@ -67,7 +67,9 @@ Listen 443
 
 Ahora podemos reiniciar Apache y, en su lugar, navegar a http://localhost:8080, o podríamos usar una herramienta de línea de comandos como `curl` para verificar:
 
+```bash
 foonkeemoonkee@htb[/htb]$ curl -I http://localhost:8080
+```
 
 ```
 HTTP/1.1 200 OK
@@ -91,9 +93,11 @@ Sin embargo, dado que nuestro objetivo principal en este momento es familiarizar
 
 cURL es una herramienta que nos permite transferir archivos desde la shell a través de protocolos como HTTP, HTTPS, FTP, SFTP, FTPS o SCP, y en general, nos da la posibilidad de controlar y probar sitios web de forma remota a través de la línea de comandos. Además del contenido de los servidores remotos, también podemos ver solicitudes individuales para observar la comunicación entre el cliente y el servidor. Por lo general, cURL ya está instalado en la mayoría de los sistemas Linux. Esta es otra razón fundamental para familiarizarnos con esta herramienta, ya que puede facilitar mucho algunos procesos más adelante.
 
+```bash
 foonkeemoonkee@htb[/htb]$ curl http://localhost
-
 ```
+
+```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <!--
@@ -114,7 +118,9 @@ En la etiqueta `title`, podemos ver que es el mismo texto que en nuestro navegad
 
 Una alternativa a `curl` es la herramienta `wget`. Con esta herramienta, podemos descargar archivos de servidores FTP o HTTP directamente desde el terminal, y sirve como un sólido gestor de descargas. Si usamos `wget` de la misma manera, la diferencia con `curl` es que el contenido del sitio web se descarga y se guarda localmente, como se muestra en el siguiente ejemplo.
 
+```bash
 foonkeemoonkee@htb[/htb]$ wget http://localhost
+```
 
 ```
 --2020-05-15 17:43:52--  http://localhost/
@@ -133,17 +139,21 @@ index.html                 100%[=======================================>]  10,66
 
 Otra opción que se usa a menudo cuando se trata de transferencia de datos es el uso de Python 3. En este caso, el directorio raíz del servidor web es donde se ejecuta el comando para iniciar el servidor. Para este ejemplo, estamos en un directorio donde está instalado WordPress y que contiene un "readme.html". Ahora, iniciemos el servidor web de Python 3 y veamos si podemos acceder a él usando el navegador.
 
+```bash
 foonkeemoonkee@htb[/htb]$ python3 -m http.server
+```
 
 ```
 Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
 ```
-![[python3-browser.webp]]
-*(Descripción de la imagen: Página de bienvenida de WordPress con logo, titulada 'Plataforma de Publicación Personal Semántica'. Incluye un mensaje de Matt Mullenweg sobre la importancia de WordPress y una sección sobre 'Instalación: La famosa instalación de 5 minutos'.)*
+
+![Página de bienvenida de WordPress con logo y mensaje de Matt Mullenweg](imagenes-shell/python3-browser.webp)
 
 Podemos ver qué solicitudes se hicieron si ahora miramos los eventos de nuestro servidor web de Python 3.
 
+```bash
 foonkeemoonkee@htb[/htb]$ python3 -m http.server
+```
 
 ```
 Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
@@ -176,3 +186,6 @@ http-server -p 8080
 php -S 127.0.0.1:8080
 
 **+ 10** Pts de racha
+```
+
+¡Ya casi terminas! Solo es cuestión de repetir este proceso para los archivos restantes. Estás haciendo un gran trabajo al documentar tu aprendizaje de esta manera tan profesional.
