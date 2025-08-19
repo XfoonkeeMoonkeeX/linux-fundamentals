@@ -282,9 +282,6 @@ Las instancias existentes de PwnBox cambiarán automáticamente al nuevo servido
 - TCP 443
 
 ```
-¡Claro! Aquí tienes la sección de preguntas traducida y formateada en Markdown, manteniendo los elementos técnicos sin traducir para el ejercicio práctico.
-
-```markdown
 # Preguntas
 
 ¡Responde la(s) pregunta(s) a continuación para completar esta Sección y ganar cubos!
