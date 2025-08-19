@@ -1,7 +1,3 @@
-De acuerdo, aquí tienes la traducción de la sección sobre Protocolos de Escritorio Remoto.
-
-***
-
 ### **Protocolos de Escritorio Remoto en Linux**
 
 Los protocolos de escritorio remoto se utilizan en Windows, Linux y macOS para proporcionar acceso gráfico remoto a un sistema. Estos protocolos permiten a los administradores gestionar, solucionar problemas y actualizar sistemas de forma remota, lo que los convierte en herramientas esenciales para dichos escenarios. Para ello, un administrador se conecta al sistema remoto utilizando el protocolo adecuado según el sistema operativo que esté gestionando.
@@ -9,7 +5,6 @@ Los protocolos de escritorio remoto se utilizan en Windows, Linux y macOS para p
 Por ejemplo, cuando los administradores necesitan instalar software o gestionar un sistema remoto, utilizan el protocolo correspondiente para establecer una sesión gráfica. Dos de los protocolos más comunes para este tipo de acceso son:
 
 *   **Protocolo de Escritorio Remoto (RDP):** Utilizado principalmente en entornos Windows. RDP permite a los administradores conectarse de forma remota e interactuar con el escritorio de una máquina Windows como si estuvieran sentados justo frente a ella.
-
 *   **Virtual Network Computing (VNC):** Un protocolo popular en entornos Linux, aunque también es multiplataforma. VNC proporciona acceso gráfico a escritorios remotos, permitiendo a los administradores realizar tareas en sistemas Linux de manera similar a RDP en Windows.
 
 Piensa en los protocolos de escritorio remoto como si tuvieras diferentes juegos de llaves para distintos tipos de edificios. **RDP** es como tener una llave hecha específicamente para edificios Windows, que te permite acceder y gestionar las habitaciones (escritorios) de forma remota, como si estuvieras dentro. **VNC**, por otro lado, es más como una llave universal que puede funcionar en muchos edificios, pero se usa a menudo para estructuras Linux. Así como usarías la llave apropiada dependiendo del edificio, los administradores eligen el protocolo correcto según el sistema al que necesitan acceder y controlar.
@@ -23,18 +18,21 @@ Cuando se inicia un escritorio en un ordenador Linux, la comunicación de la int
 Para ello, tenemos que permitir la redirección de X11 (*X11 forwarding*) en el archivo de configuración de SSH (`/etc/ssh/sshd_config`) en el servidor que proporciona la aplicación, cambiando esta opción a `yes`.
 
 **X11Forwarding**
-foonkeemoonkee@htb[/htb]$ cat /etc/ssh/sshd_config | grep X11Forwarding
+```bash
+foonkeemoonkee@htb[/htb]$ cat /etc/ssh/sshd_config | grep X11Forwarding```
 ```
 X11Forwarding yes
 ```
 Con esto podemos iniciar la aplicación desde nuestro cliente con el siguiente comando:
+```bash
 foonkeemoonkee@htb[/htb]$ ssh -X htb-student@10.129.23.11 /usr/bin/firefox
+```
 ```
 htb-student@10.129.14.130's password: ********
 <SKIP>
 ```
-*(Descripción de la imagen: Ventana de terminal con el usuario 'htb-student@NIX02' ejecutando 'ssh -X htb-student@10.129.2.210 /usr/bin/firefox'. Una ventana del navegador Firefox está abierta, mostrando una nueva pestaña.)*
-![[xserver.webp]]
+![Ventana de terminal ejecutando ssh -X y abriendo Firefox](imagenes-shell/xserver.webp)
+
 #### **Seguridad de X11**
 Como mencionamos anteriormente, X11 no es un protocolo seguro por defecto porque su comunicación no está cifrada. Por lo tanto, debemos prestar atención y buscar esos puertos TCP (6000-6010) cuando tratamos con objetivos basados en Linux. Sin las medidas de seguridad adecuadas, un servidor X abierto puede exponer datos sensibles a través de la red. Por ejemplo, un atacante en la misma red podría leer el contenido de las ventanas del servidor X sin el conocimiento del usuario, lo que hace innecesario incluso realizar un *sniffing* de red tradicional. Esta vulnerabilidad permite graves brechas de seguridad. Un atacante podría interceptar información sensible, como contraseñas o datos personales, simplemente usando herramientas estándar de X11 como `xwd` (que captura pantallas de ventanas X) y `xgrabsc`.
 
@@ -68,8 +66,10 @@ Las herramientas más utilizadas para este tipo de conexiones son UltraVNC y Rea
 En este ejemplo, configuramos un servidor TigerVNC, y para ello necesitamos, entre otras cosas, también el gestor de escritorio XFCE4, ya que las conexiones VNC con GNOME son algo inestables. Por lo tanto, necesitamos instalar los paquetes necesarios y crear una contraseña para la conexión VNC.
 
 **Instalación de TigerVNC**
+```bash
 htb-student@ubuntu:~$ sudo apt install xfce4 xfce4-goodies tigervnc-standalone-server -y
-htb-student@ubuntu:~$ vncpasswd 
+htb-student@ubuntu:~$ vncpasswd
+```
 ```
 Password: ******
 Verify: ******
@@ -78,9 +78,11 @@ Would you like to enter a view-only password (y/n)? n
 Durante la instalación, se crea una carpeta oculta en el directorio de inicio llamada `.vnc`. Luego, tenemos que crear dos archivos adicionales, `xstartup` y `config`. El `xstartup` determina cómo se crea la sesión VNC en conexión con el gestor de pantalla, y el `config` determina sus ajustes.
 
 **Configuración**
+```bash
 htb-student@ubuntu:~$ touch ~/.vnc/xstartup ~/.vnc/config
 htb-student@ubuntu:~$ cat <<EOT >> ~/.vnc/xstartup
 ```
+```bash
 #!/bin/bash
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
@@ -90,19 +92,24 @@ unset DBUS_SESSION_BUS_ADDRESS
 x-window-manager &
 EOT
 ```
+```bash
 htb-student@ubuntu:~$ cat <<EOT >> ~/.vnc/config
+```
 ```
 geometry=1920x1080
 dpi=96
 EOT
 ```
 Adicionalmente, el ejecutable `xstartup` necesita permisos para ser iniciado por el servicio.
+```bash
 htb-student@ubuntu:~$ chmod +x ~/.vnc/xstartup
-
+```
 Ahora podemos iniciar el servidor VNC.
 
 **Iniciar el servidor VNC**
+```bash
 htb-student@ubuntu:~$ vncserver
+```
 ```
 New 'linux:1 (htb-student)' desktop at :1 on machine linux
 
@@ -114,7 +121,8 @@ Use xtigervncviewer -SecurityTypes VncAuth -passwd /home/htb-student/.vnc/passwd
 Además, también podemos mostrar todas las sesiones con los puertos asociados y el ID del proceso.
 
 **Listar Sesiones**
-htb-student@ubuntu:~$ vncserver -list
+```bash
+htb-student@ubuntu:~$ vncserver -list```
 ```
 TigerVNC server sessions:
 
@@ -124,14 +132,18 @@ X DISPLAY #     RFB PORT #      PROCESS ID
 Para cifrar la conexión y hacerla más segura, podemos crear un túnel SSH sobre el cual se tuneliza toda la conexión. Cómo funciona la tunelización en detalle lo aprenderemos en el módulo de *Pivoting, Tunneling, and Port Forwarding*.
 
 **Configurando un Túnel SSH**
+```bash
 foonkeemoonkee@htb[/htb]$ ssh -L 5901:127.0.0.1:5901 -N -f -l htb-student 10.129.14.130
+```
 ```
 htb-student@10.129.14.130's password: *******
 ```
 Finalmente, podemos conectarnos al servidor a través del túnel SSH usando `xtightvncviewer`.
 
 **Conectando al Servidor VNC**
+```bash
 foonkeemoonkee@htb[/htb]$ xtightvncviewer localhost:5901
+```
 ```
 Connected to RFB server, using protocol version 3.8
 Performing standard VNC authentication
@@ -150,5 +162,5 @@ Using default colormap which is TrueColor.  Pixel format:
   True colour: max red 255 green 255 blue 255, shift red 16 green 8 blue 0
 Same machine: preferring raw encoding
 ```
-*(Descripción de la imagen: Escritorio mostrando una ventana de terminal con el usuario 'htb-student@linux' ejecutando el comando 'id'. La salida muestra el ID de usuario, el ID de grupo y las pertenencias a grupos.)* 
-![[vncviewer.webp]]
+![Escritorio VNC con terminal mostrando el comando id](imagenes-shell/vncviewer.webp)
+```
