@@ -1,8 +1,3 @@
-
-¡Excelente! Continuemos con la traducción. Aquí está la página 22 completa.
-
-***
-
 ### **Fundamentos de Linux**
 
 **Página 22**
@@ -11,13 +6,9 @@
 La gestión de sistemas de archivos en Linux es una tarea crucial que implica organizar, almacenar y mantener datos en un disco u otro dispositivo de almacenamiento. Linux es un sistema operativo versátil que admite muchos sistemas de archivos diferentes, incluidos ext2, ext3, ext4, XFS, Btrfs y NTFS, entre otros. Cada uno de estos sistemas de archivos tiene características únicas y es adecuado para casos de uso específicos. La mejor elección de sistema de archivos depende de los requisitos específicos de la aplicación o del usuario, tales como:
 
 *   **ext2** es un sistema de archivos más antiguo sin capacidades de *journaling* (registro por diario), lo que lo hace menos adecuado para sistemas modernos, pero aún útil en ciertos escenarios de baja sobrecarga (como unidades USB).
-
 *   **ext3** y **ext4** son más avanzados, con *journaling* (que ayuda a recuperarse de fallos), y **ext4** es la elección predeterminada para la mayoría de los sistemas Linux modernos porque ofrece un equilibrio entre rendimiento, fiabilidad y soporte para archivos grandes.
-
 *   **Btrfs** es conocido por sus características avanzadas como la creación de instantáneas (*snapshotting*) y las comprobaciones de integridad de datos incorporadas, lo que lo hace ideal para configuraciones de almacenamiento complejas.
-
 *   **XFS** sobresale en el manejo de archivos grandes y tiene un alto rendimiento. Es más adecuado para entornos con altas demandas de E/S.
-
 *   **NTFS**, desarrollado originalmente para Windows, es útil para la compatibilidad al tratar con sistemas de arranque dual o unidades externas que necesitan funcionar tanto en sistemas Linux como Windows.
 
 Al seleccionar un sistema de archivos, es esencial analizar las necesidades de la aplicación o los factores del usuario, como el rendimiento, la integridad de los datos, la compatibilidad y los requisitos de almacenamiento, que influirán en la decisión.
@@ -48,7 +39,9 @@ Además de los archivos regulares y los directorios, Linux también admite enlac
 
 Cada categoría de usuario puede tener diferentes niveles de permiso. Por ejemplo, el propietario de un archivo puede tener permiso para leerlo, escribirlo y ejecutarlo, mientras que otros solo pueden tener acceso de lectura. Estos permisos son independientes para cada categoría, lo que significa que los cambios en los permisos de un usuario no afectan necesariamente a los demás.
 
+```bash
 foonkeemoonkee@htb[/htb]$ ls -il
+```
 
 ```
 total 0
@@ -61,7 +54,9 @@ total 0
 La gestión de discos en Linux implica administrar dispositivos de almacenamiento físico, incluidos discos duros, unidades de estado sólido y dispositivos de almacenamiento extraíbles. La principal herramienta para la gestión de discos en Linux es `fdisk`, que nos permite crear, eliminar y gestionar particiones en una unidad. También puede mostrar información sobre la tabla de particiones, incluido el tamaño y el tipo de cada partición. Particionar una unidad en Linux implica dividir el espacio de almacenamiento físico en secciones lógicas separadas. Cada partición puede luego ser formateada con un sistema de archivos específico, como ext4, NTFS o FAT32, y puede ser montada como un sistema de archivos separado. Las herramientas de particionamiento más comunes en Linux también son `fdisk`, `gpart` y `GParted`.
 
 **Fdisk**
+```bash
 foonkeemoonkee@htb[/htb]$ sudo fdisk -l
+```
 
 ```
 Disk /dev/vda: 160 GiB, 171798691840 bytes, 335544320 sectors
@@ -88,7 +83,9 @@ Cada partición lógica o unidad de almacenamiento debe ser asignada a un direct
 El comando `mount` se usa comúnmente para montar manualmente sistemas de archivos en Linux. Sin embargo, si deseas que ciertos sistemas de archivos o particiones se monten automáticamente cuando el sistema arranca, puedes definirlos en el archivo `/etc/fstab`. Este archivo lista los sistemas de archivos y sus puntos de montaje asociados, junto con opciones como permisos de lectura/escritura y tipos de sistema de archivos, asegurando que unidades o particiones específicas estén disponibles al inicio sin necesidad de intervención manual.
 
 **Sistemas de archivos montados en el arranque**
+```bash
 foonkeemoonkee@htb[/htb]$ cat /etc/fstab
+```
 
 ```
 # /etc/fstab: static file system information.
@@ -106,7 +103,9 @@ UUID=21f7eb94-...SNIP...-d4f58f94e141 swap           swap    defaults,noatime 0 
 Para ver los sistemas de archivos actualmente montados, podemos usar el comando `mount` sin ningún argumento. La salida mostrará una lista de todos los sistemas de archivos actualmente montados, incluido el nombre del dispositivo, el tipo de sistema de archivos, el punto de montaje y las opciones.
 
 **Listar Unidades Montadas**
+```bash
 foonkeemoonkee@htb[/htb]$ mount
+```
 
 ```
 sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
@@ -114,13 +113,16 @@ proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
 udev on /dev type devtmpfs (rw,nosuid,relatime,size=4035812k,nr_inodes=1008953,mode=755,inode64)
 devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
 tmpfs on /run type tmpfs (rw,nosuid,nodev,noexec,relatime,size=814580k,mode=755,inode64)
-/dev/vda1 on / type btrfs (rw,noatime,nodiratime,nodatasum,nodatacow,space_cache,autodefrag,subvolid=257,subvol=/@)```
+/dev/vda1 on / type btrfs (rw,noatime,nodiratime,nodatasum,nodatacow,space_cache,autodefrag,subvolid=257,subvol=/@)
+```
 
 Para montar un sistema de archivos, podemos usar el comando `mount` seguido del nombre del dispositivo y el punto de montaje. Por ejemplo, para montar una unidad USB con el nombre de dispositivo `/dev/sdb1` en el directorio `/mnt/usb`, usaríamos el siguiente comando:
 
 **Montar una unidad USB**
+```bash
 foonkeemoonkee@htb[/htb]$ sudo mount /dev/sdb1 /mnt/usb
 foonkeemoonkee@htb[/htb]$ cd /mnt/usb && ls -l
+```
 
 ```
 total 32
@@ -139,11 +141,15 @@ drwxr-xr-x 1 root root 1166 Oct 14  2021 'CVE Exploits'
 Para desmontar un sistema de archivos en Linux, podemos usar el comando `umount` seguido del punto de montaje del sistema de archivos que queremos desmontar. El punto de montaje es la ubicación en el sistema de archivos donde el sistema de archivos está montado y es accesible para nosotros. Por ejemplo, para desmontar la unidad USB que se montó previamente en el directorio `/mnt/usb`, usaríamos el siguiente comando:
 
 **Desmontar**
+```bash
 foonkeemoonkee@htb[/htb]$ sudo umount /mnt/usb
+```
 
 Es importante tener en cuenta que debemos tener permisos suficientes para desmontar un sistema de archivos. Tampoco podemos desmontar un sistema de archivos que esté en uso por un proceso en ejecución. Para asegurarnos de que no haya procesos en ejecución que estén usando el sistema de archivos, podemos usar el comando `lsof` para listar los archivos abiertos en el sistema de archivos.
 
+```bash
 cry0l1t3@htb:~$ lsof | grep cry0l1t3
+```
 
 ```
 vncserver 6006        cry0l1t3  mem       REG      0,24       402274 /usr/bin/perl (path dev=0,26)
@@ -153,8 +159,7 @@ vncserver 6006        cry0l1t3  mem       REG      0,24       402059 /usr/lib/x8
 vncserver 6006        cry0l1t3  mem       REG      0,24      1444250 /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so (path dev=0,26)
 vncserver 6006        cry0l1t3  mem       REG      0,24       402327 /usr/lib/x86_64-linux-gnu/perl-base/auto/Socket/Socket.so (path dev=0,26)
 vncserver 6006        cry0l1t3  mem       REG      0,24       402324 /usr/lib/x86_64-linux-gnu/perl-base/auto/IO/IO.so (path dev=0,26)
-...SNIP...
-```
+...SNIP...```
 
 Si encontramos algún proceso que esté utilizando el sistema de archivos, debemos detenerlo antes de poder desmontar el sistema de archivos. Además, también podemos desmontar un sistema de archivos automáticamente cuando el sistema se apaga agregando una entrada al archivo `/etc/fstab`. El archivo `/etc/fstab` contiene información sobre todos los sistemas de archivos que están montados en el sistema, incluidas las opciones para el montaje automático en el momento del arranque y otras opciones de montaje. Para desmontar un sistema de archivos automáticamente al apagar, necesitamos agregar la opción `noauto` a la entrada en el archivo `/etc/fstab` para ese sistema de archivos. Esto se vería, por ejemplo, de la siguiente manera:
 
@@ -175,7 +180,6 @@ El espacio de intercambio (*swap*) es una parte esencial de la gestión de memor
 El espacio de intercambio se puede configurar durante la instalación del sistema operativo o agregarse más tarde usando los comandos `mkswap` y `swapon`.
 
 *   **`mkswap`** se utiliza para preparar un dispositivo o archivo para ser usado como espacio de intercambio creando un área de intercambio de Linux.
-
 *   **`swapon`** activa el espacio de intercambio, permitiendo que el sistema lo utilice.
 
 #### **Dimensionamiento y Gestión del Espacio de Intercambio**
@@ -184,7 +188,7 @@ El tamaño del espacio de intercambio no es fijo y depende de la memoria física
 
 Al configurar el espacio de intercambio, es importante asignarlo en una partición o archivo dedicado, separado del resto del sistema de archivos. Esto evita la fragmentación y asegura un uso eficiente del área de intercambio cuando sea necesario. Además, debido a que los datos sensibles pueden almacenarse temporalmente en el espacio de intercambio, se recomienda cifrar el espacio de intercambio para protegerse contra una posible exposición de datos.
 
-#### **Espacio de Intercambio para Hibernación**
+#### **Espacio de Intercamb-bio para Hibernación**
 
 Además de extender la memoria física, el espacio de intercambio también se utiliza para la hibernación. La hibernación es una función de ahorro de energía que guarda el estado del sistema (incluidas las aplicaciones y procesos abiertos) en el espacio de intercambio y apaga el sistema. Cuando el sistema se vuelve a encender, restaura su estado anterior desde el espacio de intercambio, reanudando exactamente donde lo dejó.
 
