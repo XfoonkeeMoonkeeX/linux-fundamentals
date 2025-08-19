@@ -1,12 +1,3 @@
-¡Perfecto! Aquí tienes la traducción completa, formateada y optimizada para Obsidian.
-
-He mantenido la estructura, he añadido un subtítulo para la tabla de comandos para que sea más clara y he utilizado los **bloques de llamada (callouts)** de Obsidian para resaltar las partes más importantes, como las advertencias de seguridad y los consejos prácticos.
-
-Simplemente copia y pega todo el siguiente código en una nueva nota en tu bóveda de Obsidian.
-
----
-
-```markdown
 # Gestión de Usuarios en Linux
 
 La gestión eficaz de usuarios es un aspecto fundamental de la administración de sistemas Linux. Los administradores necesitan con frecuencia crear nuevas cuentas de usuario o asignar usuarios existentes a grupos específicos para aplicar controles de acceso adecuados. Además, ejecutar comandos como un usuario diferente es a menudo necesario para tareas que requieren distintos privilegios. Por ejemplo, ciertos grupos pueden tener permisos exclusivos para ver o modificar archivos o directorios específicos, lo cual es esencial para mantener la seguridad e integridad del sistema. Esta capacidad nos permite recopilar información más detallada localmente en la máquina, lo que puede ser de importancia crítica para la resolución de problemas o con fines de auditoría.
