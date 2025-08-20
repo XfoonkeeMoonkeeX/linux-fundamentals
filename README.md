@@ -1,4 +1,3 @@
-```markdown
 # Linux Fundamentals
 
 Este repositorio contiene una recopilación de notas y apuntes personales sobre los conceptos fundamentales del sistema operativo Linux. El objetivo de este material es servir como una guía de estudio y referencia rápida para comprender la estructura, el funcionamiento y la administración de Linux.
