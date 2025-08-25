@@ -12,7 +12,7 @@ Este aparece como una línea de texto en la terminal, seguida del cursor (la lí
 
 ## 🧱 Estructura básica del prompt
 
-```bash
+
 <usuario>@<equipo><directorio>$
 
 Cuando estás en tu carpeta personal (home), esta se representa con una virgulilla ~. Ejemplo:
